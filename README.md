@@ -6,7 +6,7 @@ Inspired by [Matt Parker](https://www.youtube.com/watch?v=UBX2QQHlQ_I)
 
 ## Installation
 ```sh
-pip install image_2_excel
+pip install git+https://github.com/TeaFold/image_2_excel
 ```
 
 ## Examples
