@@ -16,15 +16,15 @@ CLI_LOGGER = "image_2_excel_cli"
 
 def parse_config():
     parser = argparse.ArgumentParser(description="Turn images into excel files.")
-    parser.add_argument("--input", "-i", type=Path, help="The input image path")
-    parser.add_argument("--output", "-o", type=Path, help="The output path")
+    parser.add_argument("--input", "-i", type=Path, help="Input image path")
+    parser.add_argument("--output", "-o", type=Path, help="Output path")
     parser.add_argument(
         "--dimensions",
         "-d",
         type=int,
         nargs=2,
         default=[128, 256],
-        help="Rescaled Images dimensions, in excel this will be 3*x_dim*y_dim cells total",
+        help="Rescale image dimensions, in excel this will be 3*x_dim*y_dim cells total",
     )
     parser.add_argument(
         "--save-resized-image",
@@ -34,15 +34,9 @@ def parse_config():
     parser.add_argument(
         "--cat",
         action=argparse.BooleanOptionalAction,
-        help="If no input is provided will download a random cat image to use.",
+        help="If no input is provided will download a random cat image to use",
     )
-    parser.add_argument(
-        "-v",
-        "--verbose",
-        action="count",
-        default=0,
-        help="Show debug output",
-    )
+    parser.add_argument("-v", "--verbose", action="count", default=0)
     return parser
 
 
@@ -50,7 +44,7 @@ def handle_filepaths(args):
     if args.input:
         image_filepath = Path(args.input)
     elif args.cat:
-        print("Saving a random cat image from the web.")
+        print("Saving a random cat image from the web :^)")
         image_filepath = get_random_cat_image("random_cat")
     else:
         raise Exception("An input path is required if not using the --cat flag.")
