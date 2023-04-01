@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "image_2_excel"
+readme = "README.md"
+authors = [{name = "Alex Spann", email = "alex.james.spann@gmail.com"}]
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "License :: OSI Approved :: MIT License"
+]
+requires-python = ">=3.9"
+dependencies = [
+  "requests",
+  "numpy",
+  "xlsxwriter",
+  "Pillow"
+]
+dynamic= ["version", "description"]
+
+[tool.black]
+edine-length = 88
+
+[tool.mypy]
+ignore_missing_imports = true
