@@ -1,5 +1,6 @@
 import mimetypes
 from pathlib import Path
+from typing import Optional
 
 import numpy as np
 import requests
@@ -31,7 +32,7 @@ def get_random_cat_image(image_name: str, output_directory: Path = Path("./")) -
 
 def resize_image(
     image_path: Path,
-    output_path: Path | None = None,
+    output_path: Optional[Path] = None,
     dimensions: tuple[int, int] = (128, 256),
 ) -> Image.Image:
     with Image.open(image_path) as image:

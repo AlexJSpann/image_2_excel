@@ -24,6 +24,9 @@ dynamic= ["version", "description"]
 
 [tool.black]
 edine-length = 88
+target-version = ["py39"]
 
 [tool.mypy]
+python_version = "3.9"
+show_error_codes = true
 ignore_missing_imports = true

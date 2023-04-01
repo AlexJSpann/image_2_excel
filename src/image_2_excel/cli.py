@@ -1,6 +1,7 @@
 import argparse
 import logging
 from pathlib import Path
+from typing import Optional
 
 from image_2_excel.image_2_excel import (
     get_random_cat_image,
@@ -89,7 +90,7 @@ def set_console_logger(name, verbose: int = 0):
     return logger
 
 
-def handle_image_dimensions(dimensions: list[int] | None = None) -> tuple[int, int]:
+def handle_image_dimensions(dimensions: Optional[list[int]] = None) -> tuple[int, int]:
     if dimensions:
         x, y = dimensions
         return (x, y)
