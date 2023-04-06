@@ -14,7 +14,7 @@ from image_2_excel.image_2_excel import (
 CLI_LOGGER = "image_2_excel_cli"
 
 
-def parse_config():
+def parse_config() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Turn images into excel files.")
     parser.add_argument("--input", "-i", type=Path, help="Input image path")
     parser.add_argument("--output", "-o", type=Path, help="Output path")
@@ -40,7 +40,7 @@ def parse_config():
     return parser
 
 
-def handle_filepaths(args):
+def handle_filepaths(args: argparse.Namespace) -> tuple[Path, Optional[Path], Path]:
     if args.input:
         image_filepath = Path(args.input)
     elif args.cat:
@@ -56,7 +56,7 @@ def handle_filepaths(args):
 
     if args.save_resized_image:
         resized_image_path = Path(output_filepath).parent.joinpath(
-            "./resized_image.jpg"
+            "resized_image.jpg"
         ) or Path("./resized_image.jpg")
     else:
         resized_image_path = None
@@ -64,7 +64,7 @@ def handle_filepaths(args):
     return image_filepath, resized_image_path, output_filepath
 
 
-def set_console_logger(name, verbose: int = 0):
+def set_console_logger(name: str, verbose: int = 0) -> logging.Logger:
     logger = logging.getLogger(name)
 
     c_handler = logging.StreamHandler()
@@ -91,7 +91,7 @@ def handle_image_dimensions(dimensions: Optional[list[int]] = None) -> tuple[int
     return (128, 256)
 
 
-def main():
+def main() -> None:
     parser = parse_config()
     args = parser.parse_args()
 

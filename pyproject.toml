@@ -27,6 +27,7 @@ edine-length = 88
 target-version = ["py39"]
 
 [tool.mypy]
+disallow_untyped_defs = true
 python_version = "3.9"
 show_error_codes = true
 ignore_missing_imports = true

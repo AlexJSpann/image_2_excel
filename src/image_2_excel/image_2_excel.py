@@ -1,11 +1,13 @@
 import mimetypes
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 import numpy as np
 import requests
 import xlsxwriter
 from PIL import Image
+
+IntNDArray = np.ndarray[Any, np.dtype[np.int_]]
 
 
 def get_random_cat_image(image_name: str, output_directory: Path = Path("./")) -> Path:
@@ -42,7 +44,7 @@ def resize_image(
     return image
 
 
-def image_to_horizontal_pixel_array(image: Image.Image) -> np.ndarray:
+def image_to_horizontal_pixel_array(image: Image.Image) -> IntNDArray:
     image_ndarray = np.asarray(image.convert("RGB"))
     # for each RGB pixel split into 3 rows in RGB order
     h_stripe_pixel_array = image_ndarray.transpose((0, 2, 1)).reshape(
@@ -51,7 +53,7 @@ def image_to_horizontal_pixel_array(image: Image.Image) -> np.ndarray:
     return h_stripe_pixel_array
 
 
-def pixel_array_to_excel(pixel_array: np.ndarray, output_path: Path) -> None:
+def pixel_array_to_excel(pixel_array: IntNDArray, output_path: Path) -> None:
     Nx, Ny = pixel_array.shape
     color_lookup = {0: "red", 1: "green", 2: "blue"}
 
